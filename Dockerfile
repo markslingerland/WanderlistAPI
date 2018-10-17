@@ -1,26 +1,12 @@
-FROM alpine:3.4
+FROM node:latest
+WORKDIR /software/express-server
 
-# File Author / Maintainer
-LABEL authors="Zouhir Chahoud <zouhir@zouhir.org>"
+#Adding relevant folders to image
+ADD dist /software/express-server/dist
+ADD node_modules /software/express-server/dist/node_modules
 
-# Update & install required packages
-RUN apk add --update nodejs bash git
+WORKDIR /software/express-server/dist
 
-# Install app dependencies
-COPY package.json /www/package.json
-RUN cd /www; npm install
+CMD ["node", "server.js"]
 
-# Copy app source
-COPY . /www
-
-# Set work directory to /www
-WORKDIR /www
-
-# set your port
-ENV PORT 8080
-
-# expose the port to outside world
-EXPOSE  8080
-
-# start command as per package.json
-CMD ["npm", "start"]
+MAINTAINER tomyitav@gmail.com
