@@ -7,7 +7,7 @@ import config from './core/config/config.dev'
 import cars from './routes/cars.route'
 import connectToDb from './db/connect'
 
-const port = config.serverPort;
+const port = process.env.PORT || 1337;
 logger.stream = {
     write: function(message, encoding){
         logger.info(message);
