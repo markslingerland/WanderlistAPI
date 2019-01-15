@@ -8,10 +8,9 @@ import cars from './routes/cars.route'
 import connectToDb from './db/connect'
 
 const app = express()
-const port = 3000
-var server  = require('http').createServer(app);
+const port = process.env.PORT || 3000
 
 
 app.get('/', (req, res) => res.send('Hello World in express!'))
 
-server.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
