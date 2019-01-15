@@ -1,13 +1,15 @@
-var http = require('http');
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import logger from './core/logger/app-logger'
+import morgan from 'morgan'
+import config from './core/config/config.dev'
+import cars from './routes/cars.route'
+import connectToDb from './db/connect'
 
-var server = http.createServer(function(request, response) {
+const app = express()
+const port = 3000
 
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.end("Hello World!");
+app.get('/', (req, res) => res.send('Hello World in express!'))
 
-});
-
-var port = process.env.PORT || 1337;
-server.listen(port);
-
-console.log("Server running at http://localhost:%d", port);
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
