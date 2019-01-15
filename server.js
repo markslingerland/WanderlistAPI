@@ -16,7 +16,7 @@ logger.stream = {
     }
 };
 
-connectToDb();
+// connectToDb();
 
 const app = express();
 
