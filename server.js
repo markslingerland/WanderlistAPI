@@ -1,3 +1,5 @@
+var port = process.env.PORT || 8000;
+
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -8,7 +10,6 @@ import cars from './routes/cars.route'
 import connectToDb from './db/connect'
 var http = require('http');
 
-var port = process.env.PORT || 1337;
 logger.stream = {
     write: function(message, encoding){
         logger.info(message);
@@ -18,6 +19,9 @@ logger.stream = {
 connectToDb();
 
 const app = express();
+
+var server = http.createServer(app);
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,8 +33,6 @@ app.use('/cars', cars);
 app.get('/', (req, res) => {
     res.send('Invalid endpoint!');
 });
-
-var server = http.createServer(app);
 
 server.listen(port, () => {
     logger.info('server started - ', port);
