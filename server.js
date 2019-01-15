@@ -9,7 +9,9 @@ import connectToDb from './db/connect'
 
 const app = express()
 const port = 3000
+var server  = require('http').createServer(app);
+
 
 app.get('/', (req, res) => res.send('Hello World in express!'))
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+server.listen(port, () => console.log(`Example app listening on port ${port}!`))
