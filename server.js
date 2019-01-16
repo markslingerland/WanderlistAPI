@@ -3,18 +3,18 @@ var port = process.env.PORT || 8000;
 import express from "express";
 // import bodyParser from "body-parser";
 // import cors from "cors";
-// import logger from './core/logger/app-logger'
+import logger from './core/logger/app-logger'
 // import morgan from 'morgan'
 // import config from './core/config/config.dev'
 // import cars from './routes/cars.route'
 // import connectToDb from './db/connect'
 // var http = require('http');
 
-// logger.stream = {
-//     write: function(message, encoding){
-//         logger.info(message);
-//     }
-// };
+logger.stream = {
+    write: function(message, encoding){
+        logger.info(message);
+    }
+};
 
 // // connectToDb();
 
